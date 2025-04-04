@@ -1,0 +1,198 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5vh;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--brown-text-opacity);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: var(--brown-menu);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background-color: #432907;
+}
+
+.background {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: hidden;
+    z-index: -1;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: opacity(70%);
+}
+
+.home #title {
+    width: 80%;
+    height: 20%;
+    transition: 1.5s;
+    margin-top: 40%;
+}
+
+#title img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(5px 5px 10px black);
+}
+
+.home #menu {
+    width: 0;
+    opacity: 0;
+    border-radius: 20px;
+    height: fit-content;
+    background-color: var(--brown-menu);
+    color: var(--brown-text);
+    font-size: 4vw;
+    transition: 1.5s;
+    padding: 5px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.home #menu h2 {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.home .button {
+    width: 0;
+    height: fit-content;
+    font-size: 3vw;
+    padding: 5px 15px;
+    background-color: var(--brown-text);
+    color: var(--brown-menu);
+    border-radius: 30px;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.home .button h3 {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.home .button:hover {
+    filter: brightness(0.5);
+}
+
+.instruction #title {
+    width: 90%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.instruction #container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60%;
+    width: calc(90% + 6px);
+    margin-left: 3px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.instruction::-webkit-scrollbar {
+    width: 6px;
+}
+
+.instruction::-webkit-scrollbar-track {
+    background-color: var(--brown-text-opacity);
+    border-radius: 6px;
+}
+
+.instruction::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: var(--brown-menu);
+}
+
+.instruction::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background-color: #432907;
+}
+
+.instruction .content {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.instruction h1 {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    font-size: 32px;
+    color: var(--brown-text);
+    text-shadow: 5px 5px 10px black;
+}
+
+.instruction h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--brown-text);
+    text-shadow: 5px 5px 10px black;
+}
+
+.instruction :where(p, li) {
+    margin: 0;
+    padding-left: 12px;
+    font-size: 16px;
+    text-align: left;
+    color: var(--ins-text);
+}
+
+.instruction ul {
+    width: 100%;
+    margin: 0;
+    padding: 0 12px;
+}
+
+.instruction li {
+    width: 95%;
+    margin: 0;
+    padding: 0;
+}
+
+.instruction a {
+    background-color: var(--green);
+    padding: 6px 12px 10px 12px;
+    margin-top: 8px;
+    border-radius: 10px;
+    color: var(--brown-text);
+}
+
+.instruction a:hover {
+    opacity: 80%;
+}
