@@ -13,7 +13,7 @@ type Role =
     | "Tự Lãng"
     | "Năm Thọ";
 
-class Player {
+export class Player {
     name: string; // Tên
     role: Role; // Vai trò (Chí Phèo, Bá Kiến...)
     team: string; // Phe (Công lý, ...)
