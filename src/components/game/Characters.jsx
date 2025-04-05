@@ -245,7 +245,7 @@ function Character(props) {
                 )}
 
                 {/* Dân thường (có thể thêm nhiều) */}
-                <h3 className="civilian-title">Dân thường</h3>
+                <h2>Dân thường</h2>
                 <div className="civilians-section">
                     <div className="civilian-controls">
                         <button className="civilian-btn" onClick={addCivilian}>+</button>
