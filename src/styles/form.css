@@ -9,9 +9,9 @@
 }
 
 .container {
-    background: var(--brown-text);
+    background: #d3b96b;
     width: 90%;
-    padding: 0 20px 5px 20px;
+    padding: 10px 20px 15px 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .container.disabled {
-    background: #a0937c;
+    background: #b5a57c;
     opacity: 0.8;
 }
 
@@ -33,7 +33,7 @@
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 8px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -42,8 +42,8 @@
     color: #5a3825;
     border: 1px solid #5a3825;
     border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 14px;
+    padding: 8px 20px;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: bold;
@@ -62,28 +62,33 @@
 .civilian-controls {
     display: flex;
     gap: 8px;
-    position: absolute;
-    top: -45px;
-    right: 5%;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    margin-left: 8%;
+    padding: 8px 16px;
+    background-color: rgba(207, 175, 119, 0.8);
+    border-radius: 20px;
+    width: fit-content;
 }
 
 .civilian-btn {
-    background-color: var(--brown-text);
-    color: var(--brown-menu);
+    background-color: transparent;
+    color: #5a3825;
     border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
     cursor: pointer;
+    padding: 0;
     line-height: 1;
 }
 
 .civilian-btn:disabled {
-    background-color: #a0937c;
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
@@ -92,14 +97,14 @@ label {
     font-weight: bold;
     color: #5a3825;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     margin-top: 5px;
     text-align: left;
 }
 
 input {
     width: 95%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
