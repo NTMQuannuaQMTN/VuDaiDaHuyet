@@ -247,17 +247,17 @@ function Character(props) {
                 {/* Dân thường (có thể thêm nhiều) */}
                 <h2>Dân thường</h2>
                 <div className="civilians-section">
-                    <div className="civilian-controls">
-                        <button className="civilian-btn" onClick={addCivilian}>+</button>
-                        <button className="civilian-btn" onClick={removeCivilian} disabled={civilianCount <= 1}>-</button>
-                    </div>
-                    
                     {Array.from({ length: civilianCount }).map((_, index) => (
                         <div className="container" key={`civilian-${index}`}>
                             <label htmlFor={`civilian-${index}`}>Dân thường {index + 1}:</label>
                             <input type="text" id={`civilian-${index}`} placeholder="Nhập tên người chơi" />
                         </div>
                     ))}
+                    
+                    <div className="civilian-controls">
+                        <button className="civilian-btn add" onClick={addCivilian}>+</button>
+                        <button className="civilian-btn remove" onClick={removeCivilian} disabled={civilianCount <= 1}>-</button>
+                    </div>
                 </div>
 
                 {/* Phe Đội Tảo */}
