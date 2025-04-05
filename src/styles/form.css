@@ -30,48 +30,48 @@
     text-align: center;
 }
 
-.role-header {
+.button-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 5px;
 }
 
 .role-toggle {
-    background-color: #5a3825;
-    color: #e9d8b6;
-    border: none;
-    border-radius: 5px;
-    padding: 4px 8px;
-    font-size: 12px;
+    background-color: #fff;
+    color: #5a3825;
+    border: 1px solid #5a3825;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    font-weight: bold;
 }
 
 .role-toggle:hover {
-    background-color: #452b1c;
+    background-color: #f5ecd7;
 }
 
 .civilians-section {
     width: 90%;
     margin-top: 5px;
+    position: relative;
 }
 
-.civilians-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.civilians-header h3 {
+.civilian-title {
     color: var(--brown-text);
-    margin: 0;
+    margin: 15px 0 10px 0;
+    text-align: center;
+    width: 100%;
 }
 
 .civilian-controls {
     display: flex;
     gap: 8px;
+    position: absolute;
+    top: -40px;
+    right: 5%;
 }
 
 .civilian-btn {
