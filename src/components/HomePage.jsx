@@ -28,7 +28,7 @@ function Home(props) {
         </div>
         <div id="menu">
             <h2>Chào mừng Hương Sư</h2>
-            <div id='start' className='button'>
+            <div id='start' className='button' onClick={props.playGame}>
                 <h3>Bắt đầu ván chơi</h3>
             </div>
             <div id='how_to_use' className='button' onClick={props.seeInstruction}>

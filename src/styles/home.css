@@ -1,3 +1,8 @@
+#root {
+    width: 90vw;
+    padding: auto;
+}
+
 .home {
     display: flex;
     flex-direction: column;
@@ -54,6 +59,12 @@
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(5px 5px 10px black);
+}
+
+#title h2 {
+    width: 100%;
+    height: fit-content;
+    font-size: 10vw;
 }
 
 .home #menu {
@@ -120,25 +131,6 @@
     overflow-x: hidden;
 }
 
-.instruction::-webkit-scrollbar {
-    width: 6px;
-}
-
-.instruction::-webkit-scrollbar-track {
-    background-color: var(--brown-text-opacity);
-    border-radius: 6px;
-}
-
-.instruction::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: var(--brown-menu);
-}
-
-.instruction::-webkit-scrollbar-thumb:hover {
-    border-radius: 6px;
-    background-color: #432907;
-}
-
 .instruction .content {
     padding: 0 10px;
     display: flex;
@@ -195,4 +187,26 @@
 
 .instruction a:hover {
     opacity: 80%;
+}
+
+.game {
+    width: 100%;
+    margin: 0;
+}
+
+.game #title {
+    width: 100%;
+    height: fit-content;
+    color: var(--brown-text);
+    margin-top: 0;
+}
+
+#game_title {
+    color: var(--brown-text);
+    height: fit-content;
+    width: 100%;
+    font-size: 5vw;
+    opacity: 0;
+    transition: 0.5s;
+    margin: 0;
 }
