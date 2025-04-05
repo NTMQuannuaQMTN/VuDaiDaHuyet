@@ -5,6 +5,7 @@
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 2rem;
 }
 
 .container {
@@ -14,6 +15,83 @@
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-bottom: 12px;
+}
+
+.container.disabled {
+    background: #a0937c;
+    opacity: 0.8;
+}
+
+.disabled-message {
+    color: #4a3518;
+    font-style: italic;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.role-toggle {
+    background-color: #5a3825;
+    color: #e9d8b6;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.role-toggle:hover {
+    background-color: #452b1c;
+}
+
+.civilians-section {
+    width: 90%;
+    margin-top: 5px;
+}
+
+.civilians-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.civilians-header h3 {
+    color: var(--brown-text);
+    margin: 0;
+}
+
+.civilian-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.civilian-btn {
+    background-color: var(--brown-text);
+    color: var(--brown-menu);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.civilian-btn:disabled {
+    background-color: #a0937c;
+    cursor: not-allowed;
 }
 
 label {
@@ -33,17 +111,12 @@ input {
     border: none;
     border-radius: 5px;
     outline: none;
+    background-color: #f5ecd7;
 }
 
 input:focus {
     border-color: #a87c5a;
-}
-
-#form_container {
-    width: 100%;
-    height: 60vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    background-color: #fff;
 }
 
 #form_container {
@@ -52,12 +125,36 @@ input:focus {
     overflow-y: scroll;
     overflow-x: hidden;
     transition: 1s;
+    padding-right: 6px; /* Space for scrollbar */
 }
 
 #form_container h2 {
-    margin: 0;
+    margin: 15px 0 10px 0;
     font-size: 5vw;
     text-align: center;
     width: 100%;
     color: var(--brown-text);
+}
+
+.form-buttons {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.submit-button {
+    background-color: var(--brown-text);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #432907;
 }
