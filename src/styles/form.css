@@ -59,18 +59,11 @@
     position: relative;
 }
 
-.civilian-title {
-    color: var(--brown-text);
-    margin: 15px 0 10px 0;
-    text-align: center;
-    width: 100%;
-}
-
 .civilian-controls {
     display: flex;
     gap: 8px;
     position: absolute;
-    top: -40px;
+    top: -45px;
     right: 5%;
 }
 
@@ -130,10 +123,12 @@ input:focus {
 
 #form_container h2 {
     margin: 15px 0 10px 0;
-    font-size: 5vw;
+    font-size: 32px;
     text-align: center;
     width: 100%;
-    color: var(--brown-text);
+    color: #d4b45c;
+    font-family: "Times New Roman", serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .form-buttons {
