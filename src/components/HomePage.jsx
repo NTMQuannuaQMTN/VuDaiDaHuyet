@@ -12,7 +12,7 @@ function Home(props) {
             let buttons = document.getElementsByClassName("button");
             title.style.marginTop = 0;
             menu.style.opacity = 1;
-            menu.style.width = '80%';
+            menu.style.width = '400px';
             for (let i = 0; i < buttons.length; ++i) {
                 buttons[i].style.width = 'fit-content';
             }

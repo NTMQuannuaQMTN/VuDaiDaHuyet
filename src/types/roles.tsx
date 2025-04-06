@@ -30,7 +30,7 @@ export class Player {
         this.name = name;
         this.role = role;
         this.team = this.assignTeam(role);
-        this.coins = 0;
+        this.coins = 3;
         this.frustration = 0;
         this.wine = 0;
         this.items = [];

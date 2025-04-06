@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../../styles/home.css"
 import "../../styles/form.css"
 
@@ -40,25 +40,24 @@ function Character(props) {
             if (i < civilianCount) {
                 let inp = document.getElementById(`civilian-${i}`);
                 if (inp.value == "") {
-                    return false;
+                    return "Missing name";
                 }
                 gamePlayers.push(new Player(inp.value, "Dân thường"));
             } else {
                 let inp = document.getElementById(roleID[i - civilianCount]);
                 if (enabledRoles[roleIDVN[i - civilianCount]] && inp.value == "") {
-                    return false;
+                    return "Missing name";
                 }
                 if (enabledRoles[roleIDVN[i - civilianCount]]) {
                     if (inp.value == "") {
-                        return false;
+                        return "Missing name";
                     }
                     gamePlayers.push(new Player(inp.value, roleIDVN[i - civilianCount]));
                 }
             }
         }
-        console.log(gamePlayers);
-        return true;
-    }
+        return ((enabledRoles["Bá Kiến"] || enabledRoles["Lý Cường"] || enabledRoles["Bà Ba"]) && (enabledRoles["Ông Tư Đạm"] || enabledRoles["Thị Nở"] || enabledRoles["Anh Hàng Xóm"] || enabledRoles["Bà Cô của Thị Nở"] || enabledRoles["Binh Chức"] || civilianCount > 0) ? "Valid" : "Missing member");
+    };
 
     // Function to toggle role usage
     const toggleRole = (role) => {
@@ -80,31 +79,32 @@ function Character(props) {
         }
     };
 
-    useEffect(() => {
+    setTimeout(() => {
+        console.log("document.body.innerHTML", document.body.innerHTML);
+        let game = document.getElementsByClassName("game");
+        console.log(game);
+        let title = document.getElementById("title");
+        let game_title = document.getElementById("game_title");
+        let form = document.getElementById("form_container");
+        let buttons = document.getElementsByClassName("button");
+        title.style.marginTop = '-50%';
+        title.style.opacity = 0;
         setTimeout(() => {
-            let title = document.getElementById("title");
-            let game_title = document.getElementById("game_title");
-            let form = document.getElementById("form_container");
-            let buttons = document.getElementsByClassName("button");
-            title.style.marginTop = '-50%';
-            title.style.opacity = 0;
-            setTimeout(() => {
-                title.style.display = 'none';
-                game_title.style.opacity = 1;
-                form.style.height = "60vh";
-            }, 1000);
-            for (let i = 0; i < buttons.length; ++i) {
-                buttons[i].style.width = 'fit-content';
-            }
+            title.style.display = 'none';
+            game_title.style.opacity = 1;
+            form.style.height = "60vh";
         }, 1000);
-    }, []);
+        for (let i = 0; i < buttons.length; ++i) {
+            buttons[i].style.width = 'fit-content';
+        }
+    }, 2000);
 
     return (<div className='game'>
         <div className='background'>
             <img src={background}></img>
         </div>
         <div id='title'>
-            <h2>ĐÊM ĐẦU TIÊN</h2>
+            <h2>ĐÊM 0</h2>
         </div>
         <div id='game_title'>
             <h2>Nhập tên người chơi</h2>
@@ -163,7 +163,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Anh Hàng Xóm"] && 'disabled'}`}>
-                    <label htmlFor="anh-hang-xom">Thị Nở:</label>
+                    <label htmlFor="anh-hang-xom">Anh Hàng Xóm:</label>
                     {enabledRoles["Anh Hàng Xóm"] && <input type="text" id="anh-hang-xom" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Anh Hàng Xóm"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -260,7 +260,16 @@ function Character(props) {
                 </div>
 
                 <div className="form-buttons">
-                    <button className="submit-button" onClick={() => { console.log(checkCharacters()); }}>Tiếp tục</button>
+                    <button className="submit-button" onClick={() => {
+                        let res = checkCharacters();
+                        if (res == "Missing name") {
+                            alert("Vui lòng Hương Sư điền đầy đủ tên những người chơi");
+                        } else if (res == "Missing member") {
+                            alert("Vui lòng Hương Sư chơi ít nhất một người phe Quyền Quý và một người phe Công Lý");
+                        } else {
+                            props.setPlayers(gamePlayers);
+                        }
+                    }}>Tiếp tục</button>
                 </div>
             </div>
         </div>

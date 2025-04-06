@@ -3,18 +3,14 @@ import "../styles/home.css"
 
 import background from "../assets/image.png";
 import Character from './game/Characters';
+import MainGame from './game/MainGame';
 
 function GamePlay(props) {
     const [members, setMembers] = useState([]);
-
-    useEffect(() => {
-        setTimeout(() => {
-            
-        }, 1000);
-    }, []);
+    const [gameStart, setGameStart] = useState(false);
 
     return (<div className='home'>
-        <Character></Character>
+        {gameStart ? <MainGame></MainGame> : <Character setPlayers={(arr) => {setMembers(arr); setGameStart(true);}}></Character>}
     </div>);
 }
 
