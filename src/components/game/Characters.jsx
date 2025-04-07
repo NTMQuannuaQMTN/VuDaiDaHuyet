@@ -31,9 +31,9 @@ function Character(props) {
 
     let gamePlayers = [];
 
-    const roleID = ['ba-kien', 'ly-cuong', 'ba-ba', 'ong-tu-dam', 'thi-no', 'anh-hang-xom', 'ba-co', 'binh-chuc', 'doi-tao', 'chi-pheo', 'tu-lang', 'nam-tho'];
-    const roleIDVN = ['Bá Kiến', 'Lý Cường', 'Bà Ba', 'Ông Tư Đạn', 'Thị Nở', 'Anh Hàng Xóm', 'Bà Cô', 'Binh Chức', 'Đội Tảo', 'Chí Phèo', 'Tự Lãng', 'Năm Thọ'];
-
+    const roleID = ['ba-kien', 'ly-cuong', 'ba-ba', 'doi-tao', 'ong-tu-dam', 'thi-no', 'anh-hang-xom', 'ba-co', 'binh-chuc', 'chi-pheo', 'nam-tho', 'tu-lang'];
+    const roleIDVN = ['Bá Kiến', 'Lý Cường', 'Bà Ba', 'Đội Tảo', 'Ông Tư Đạm', 'Thị Nở', 'Anh Hàng Xóm', 'Bà Cô của Thị Nở', 'Binh Chức', 'Chí Phèo', 'Năm Thọ', 'Tự Lãng'];
+    
     const checkCharacters = () => {
         gamePlayers = [];
         for (let i = 0; i < roleID.length + civilianCount; ++i) {
@@ -80,9 +80,6 @@ function Character(props) {
     };
 
     setTimeout(() => {
-        console.log("document.body.innerHTML", document.body.innerHTML);
-        let game = document.getElementsByClassName("game");
-        console.log(game);
         let title = document.getElementById("title");
         let game_title = document.getElementById("game_title");
         let form = document.getElementById("form_container");
@@ -97,7 +94,7 @@ function Character(props) {
         for (let i = 0; i < buttons.length; ++i) {
             buttons[i].style.width = 'fit-content';
         }
-    }, 2000);
+    }, 1000);
 
     return (<div className='game'>
         <div className='background'>
@@ -115,7 +112,7 @@ function Character(props) {
                 <h2>Phe Quyền Thế</h2>
 
                 <div className={`container ${!enabledRoles["Bá Kiến"] && 'disabled'}`}>
-                    <label htmlFor="ba-kien">Bá Kiến:</label>
+                    <label>Bá Kiến:</label>
                     {enabledRoles["Bá Kiến"] && <input type="text" id="ba-kien" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Bá Kiến"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -124,7 +121,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Lý Cường"] && 'disabled'}`}>
-                    <label htmlFor="ly-cuong">Lý Cường:</label>
+                    <label>Lý Cường:</label>
                     {enabledRoles["Lý Cường"] && <input type="text" id="ly-cuong" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Lý Cường"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -133,7 +130,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Bà Ba"] && 'disabled'}`}>
-                    <label htmlFor="ba-ba">Bà Ba:</label>
+                    <label>Bà Ba:</label>
                     {enabledRoles["Bà Ba"] && <input type="text" id="ba-ba" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Bà Ba"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -145,7 +142,7 @@ function Character(props) {
                 <h2>Phe Công Lý</h2>
 
                 <div className={`container ${!enabledRoles["Ông Tư Đạm"] && 'disabled'}`}>
-                    <label htmlFor="ong-tu-dam">Ông Tư Đạm:</label>
+                    <label>Ông Tư Đạm:</label>
                     {enabledRoles["Ông Tư Đạm"] && <input type="text" id="ong-tu-dam" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Ông Tư Đạm"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -154,7 +151,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Thị Nở"] && 'disabled'}`}>
-                    <label htmlFor="thi-no">Thị Nở:</label>
+                    <label>Thị Nở:</label>
                     {enabledRoles["Thị Nở"] && <input type="text" id="thi-no" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Thị Nở"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -163,7 +160,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Anh Hàng Xóm"] && 'disabled'}`}>
-                    <label htmlFor="anh-hang-xom">Anh Hàng Xóm:</label>
+                    <label>Anh Hàng Xóm:</label>
                     {enabledRoles["Anh Hàng Xóm"] && <input type="text" id="anh-hang-xom" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Anh Hàng Xóm"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -172,7 +169,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Bà Cô của Thị Nở"] && 'disabled'}`}>
-                    <label htmlFor="ba-co">Bà Cô của Thị Nở:</label>
+                    <label>Bà Cô của Thị Nở:</label>
                     {enabledRoles["Bà Cô của Thị Nở"] && <input type="text" id="ba-co" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Bà Cô của Thị Nở"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -181,7 +178,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Binh Chức"] && 'disabled'}`}>
-                    <label htmlFor="binh-chuc">Binh Chức:</label>
+                    <label>Binh Chức:</label>
                     {enabledRoles["Binh Chức"] && <input type="text" id="binh-chuc" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Binh Chức"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -205,13 +202,13 @@ function Character(props) {
                 <div className="civilians-section">
                     {civilianCount > 0 && Array.from({ length: civilianCount }).map((_, index) => (
                         <div className="container" key={`civilian-${index}`}>
-                            <label htmlFor={`civilian-${index}`}>Dân thường {index + 1}:</label>
+                            <label>Dân thường {index + 1}:</label>
                             <input type="text" id={`civilian-${index}`} placeholder="Nhập tên người chơi" />
                         </div>
                     ))}
                     {civilianCount == 0 &&
                         <div className="container disabled">
-                            <label htmlFor={`civilian`}>Dân thường:</label>
+                            <label>Dân thường:</label>
                             <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>
                         </div>
                     }
@@ -221,7 +218,7 @@ function Character(props) {
                 <h2>Phe Đội Tảo</h2>
 
                 <div className={`container ${!enabledRoles["Đội Tảo"] && 'disabled'}`}>
-                    <label htmlFor="doi-tao">Đội Tảo:</label>
+                    <label>Đội Tảo:</label>
                     {enabledRoles["Đội Tảo"] && <input type="text" id="doi-tao" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Đội Tảo"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -233,7 +230,7 @@ function Character(props) {
                 <h2>Những kẻ Lang Thang</h2>
 
                 <div className={`container ${!enabledRoles["Chí Phèo"] && 'disabled'}`}>
-                    <label htmlFor="chi-pheo">Chí Phèo:</label>
+                    <label>Chí Phèo:</label>
                     {enabledRoles["Chí Phèo"] && <input type="text" id="chi-pheo" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Chí Phèo"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -242,7 +239,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Tự Lãng"] && 'disabled'}`}>
-                    <label htmlFor="tu-lang">Tự Lãng:</label>
+                    <label>Tự Lãng:</label>
                     {enabledRoles["Tự Lãng"] && <input type="text" id="tu-lang" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Tự Lãng"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
@@ -251,7 +248,7 @@ function Character(props) {
                 </div>
 
                 <div className={`container ${!enabledRoles["Năm Thọ"] && 'disabled'}`}>
-                    <label htmlFor="nam-tho">Năm Thọ:</label>
+                    <label>Năm Thọ:</label>
                     {enabledRoles["Năm Thọ"] && <input type="text" id="nam-tho" placeholder="Nhập tên người chơi" />}
                     {!enabledRoles["Năm Thọ"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">

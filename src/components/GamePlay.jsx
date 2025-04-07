@@ -3,14 +3,17 @@ import "../styles/home.css"
 
 import background from "../assets/image.png";
 import Character from './game/Characters';
-import MainGame from './game/MainGame';
+import Day from './game/Day';
 
 function GamePlay(props) {
     const [members, setMembers] = useState([]);
-    const [gameStart, setGameStart] = useState(false);
+    const [isDay, setIsDay] = useState(false);
+    const [day, setDay] = useState(0);
 
     return (<div className='home'>
-        {gameStart ? <MainGame></MainGame> : <Character setPlayers={(arr) => {setMembers(arr); setGameStart(true);}}></Character>}
+        {day == 0 && (
+            !isDay ? <Character setPlayers={(arr) => { setMembers(arr); setIsDay(true); }}></Character> : <Day date={day} members={members}></Day>
+        )}
     </div>);
 }
 
