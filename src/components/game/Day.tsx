@@ -112,7 +112,7 @@ function Day(props) {
                         teamPlayers.length > 0 && (
                             <div key={team} className="team-section">
                                 <h3 className="team-title">{team}</h3>
-                                <div className="player-list">
+                                <div id="player_list">
                                     {teamPlayers.map((player, index) => (
                                         <Card 
                                             key={`${player.name}-${index}`} 
@@ -125,7 +125,7 @@ function Day(props) {
                     ))
                 ) : (
                     // Display filtered players
-                    <div className="player-list">
+                    <div id="player_list">
                         {getFilteredPlayers().map((player, index) => (
                             <Card 
                                 key={`${player.name}-${index}`} 

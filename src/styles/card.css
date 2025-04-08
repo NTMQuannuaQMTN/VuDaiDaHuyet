@@ -1,5 +1,5 @@
 .card {
-    width: 30%;
+    width: 45%;
     aspect-ratio: 1/2;
     background-color: var(--brown-menu);
     border-radius: 20px;
@@ -25,22 +25,28 @@
 }
 
 .player-info {
-    padding: 10px;
     text-align: center;
     background-color: var(--brown-menu);
     color: var(--brown-text);
+    height: calc(6%);
+    display: flex;
+    align-items: space-between;
 }
 
 .player-info h3 {
     margin: 0;
     font-size: 16px;
+    line-height: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 100%;
+    height: 100%;
 }
 
 .player-info p {
-    margin: 5px 0 0;
+    margin: 0;
     font-size: 14px;
     opacity: 0.8;
+    width: 100%;
 }

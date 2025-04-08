@@ -211,9 +211,13 @@
     margin: 0;
 }
 
+#game_title h2 {
+    margin: 2vh 0;
+}
+
 #player_cont {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -221,7 +225,7 @@
 #player_list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 3%;
 }
 /* Player filters */
 .player-filters {
@@ -239,9 +243,9 @@
     border: 1px solid var(--brown-text);
     border-radius: 20px;
     padding: 8px 15px;
-    font-size: 14px;
+    font-size: 2vh;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .player-filters button.active,
@@ -265,15 +269,6 @@
     margin-bottom: 15px;
 }
 
-/* Player list */
-.player-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 0 20px;
-}
-
 /* No players message */
 .no-players {
     text-align: center;
@@ -295,7 +290,7 @@
     border: none;
     border-radius: 30px;
     padding: 12px 25px;
-    font-size: 16px;
+    font-size: 2vh;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
