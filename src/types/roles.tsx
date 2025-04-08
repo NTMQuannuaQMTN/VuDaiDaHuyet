@@ -3,9 +3,9 @@ type Role =
     | "Bá Kiến"
     | "Lý Cường"
     | "Bà Ba"
-    | "Ông Tư Đạm"
+    | "Lão Hạc"
     | "Thị Nở"
-    | "Anh Hàng Xóm"
+    | "Ông Giáo"
     | "Bà Cô của Thị Nở"
     | "Binh Chức"
     | "Dân thường"
@@ -44,9 +44,9 @@ export class Player {
             return "Quyền Thế";
         } else if (
             [
-                "Ông Tư Đạm",
+                "Lão Hạc",
                 "Thị Nở",
-                "Anh Hàng Xóm",
+                "Ông Giáo",
                 "Bà Cô của Thị Nở",
                 "Binh Chức",
                 "Dân thường",
@@ -73,7 +73,7 @@ export class Player {
     }
 
     removeItem(item: string) {
-        this.items = this.items.filter((i) => i !== item);
+        this.items = this.items.splice(this.items.indexOf(item), 1);
     }
 
     increaseFrustration(amount: number) {

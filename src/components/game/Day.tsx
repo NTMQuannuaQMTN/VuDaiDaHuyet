@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import "../../styles/home.css"
 import "../../styles/form.css"
 
@@ -6,26 +6,34 @@ import { Player } from "../../types/roles";
 
 import background from "../../assets/background_day.png";
 import Card from '../player/Card';
+import PlayerMenu from '../player/PlayerMenu';
 
 function Day(props) {
+    const titleRef = useRef(null);
+    const gameRef = useRef(null);
+
     const [filterTeam, setFilterTeam] = useState('all');
     const [players, setPlayers] = useState([]);
+    // const [playerToSee, setPlayerToSee] = useState(null);
 
     useEffect(() => {
         // Animation for title
-        const title = document.getElementById("title");
-        const game_title = document.getElementById("game_title");
-        
+        const title = titleRef.current;
+        const game_title = gameRef.current;
+
+        console.log(title);
+
         if (title && game_title) {
             title.style.marginTop = '-50%';
             title.style.opacity = '0';
-            
+
             setTimeout(() => {
-                title.style.display = 'none';
                 game_title.style.opacity = '1';
             }, 1000);
         }
-        
+    }, []);
+
+    useEffect(() => {
         // Set players from props
         setPlayers(props.members);
     }, [props.members]);
@@ -61,49 +69,49 @@ function Day(props) {
             <div className='background'>
                 <img src={background} alt="Background" />
             </div>
-            
-            <div id='title'>
+
+            <div id='title' ref={titleRef}>
                 <h2>NGÀY {props.date}</h2>
             </div>
-            
-            <div id='game_title'>
+
+            <div id='game_title' ref={gameRef}>
                 <h2>Danh sách người chơi</h2>
             </div>
-            
+
             {/* Filter buttons */}
             <div className="player-filters">
-                <button 
-                    className={filterTeam === 'all' ? 'active' : ''} 
+                <button
+                    className={filterTeam === 'all' ? 'active' : ''}
                     onClick={() => setFilterTeam('all')}
                 >
                     Tất cả
                 </button>
-                <button 
-                    className={filterTeam === 'Quyền Thế' ? 'active' : ''} 
+                <button
+                    className={filterTeam === 'Quyền Thế' ? 'active' : ''}
                     onClick={() => setFilterTeam('Quyền Thế')}
                 >
                     Phe Quyền Thế
                 </button>
-                <button 
-                    className={filterTeam === 'Công Lý' ? 'active' : ''} 
+                <button
+                    className={filterTeam === 'Công Lý' ? 'active' : ''}
                     onClick={() => setFilterTeam('Công Lý')}
                 >
                     Phe Công Lý
                 </button>
-                <button 
-                    className={filterTeam === 'Đội Tảo' ? 'active' : ''} 
+                <button
+                    className={filterTeam === 'Đội Tảo' ? 'active' : ''}
                     onClick={() => setFilterTeam('Đội Tảo')}
                 >
                     Phe Đội Tảo
                 </button>
-                <button 
-                    className={filterTeam === 'Lang Thang' ? 'active' : ''} 
+                <button
+                    className={filterTeam === 'Lang Thang' ? 'active' : ''}
                     onClick={() => setFilterTeam('Lang Thang')}
                 >
                     Những kẻ Lang Thang
                 </button>
             </div>
-            
+
             {/* Player list container */}
             <div id='player_cont'>
                 {filterTeam === 'all' ? (
@@ -113,10 +121,11 @@ function Day(props) {
                             <div key={team} className="team-section">
                                 <h3 className="team-title">{team}</h3>
                                 <div id="player_list">
-                                    {teamPlayers.map((player, index) => (
-                                        <Card 
-                                            key={`${player.name}-${index}`} 
+                                    {teamPlayers.map((player: any, index) => (
+                                        <Card
+                                            key={`${player.name}-${index}`}
                                             player={player}
+                                            seeMenu={() => { setPlayerToSee(player) }}
                                         />
                                     ))}
                                 </div>
@@ -126,15 +135,16 @@ function Day(props) {
                 ) : (
                     // Display filtered players
                     <div id="player_list">
-                        {getFilteredPlayers().map((player, index) => (
-                            <Card 
-                                key={`${player.name}-${index}`} 
+                        {getFilteredPlayers().map((player: any, index) => (
+                            <Card
+                                key={`${player.name}-${index}`}
                                 player={player}
+                                seeMenu={() => { setPlayerToSee(player) }}
                             />
                         ))}
                     </div>
                 )}
-                
+
                 {/* Show message if no players in selected filter */}
                 {filterTeam !== 'all' && getFilteredPlayers().length === 0 && (
                     <div className="no-players">
@@ -142,11 +152,13 @@ function Day(props) {
                     </div>
                 )}
             </div>
-            
+
+            {/* {playerToSee != null && <PlayerMenu player={playerToSee} back={() => {setPlayerToSee}}></PlayerMenu>} */}
+
             {/* Game controls */}
             <div className="day-controls">
                 <button className="next-phase-btn">
-                    Bắt đầu đêm {props.date}
+                    Bắt đầu đêm {props.date + 1}
                 </button>
             </div>
         </div>

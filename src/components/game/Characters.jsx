@@ -16,9 +16,9 @@ function Character(props) {
         "Lý Cường": true,
         "Bà Ba": true,
         // Phe Công Lý
-        "Ông Tư Đạm": true,
+        "Lão Hạc": true,
         "Thị Nở": true,
-        "Anh Hàng Xóm": true,
+        "Ông Giáo": true,
         "Bà Cô của Thị Nở": true,
         "Binh Chức": true,
         // Phe Đội Tảo
@@ -31,8 +31,8 @@ function Character(props) {
 
     let gamePlayers = [];
 
-    const roleID = ['ba-kien', 'ly-cuong', 'ba-ba', 'doi-tao', 'ong-tu-dam', 'thi-no', 'anh-hang-xom', 'ba-co', 'binh-chuc', 'chi-pheo', 'nam-tho', 'tu-lang'];
-    const roleIDVN = ['Bá Kiến', 'Lý Cường', 'Bà Ba', 'Đội Tảo', 'Ông Tư Đạm', 'Thị Nở', 'Anh Hàng Xóm', 'Bà Cô của Thị Nở', 'Binh Chức', 'Chí Phèo', 'Năm Thọ', 'Tự Lãng'];
+    const roleID = ['ba-kien', 'ly-cuong', 'ba-ba', 'doi-tao', 'lao-hac', 'thi-no', 'ong-giao', 'ba-co', 'binh-chuc', 'chi-pheo', 'nam-tho', 'tu-lang'];
+    const roleIDVN = ['Bá Kiến', 'Lý Cường', 'Bà Ba', 'Đội Tảo', 'Lão Hạc', 'Thị Nở', 'Ông Giáo', 'Bà Cô của Thị Nở', 'Binh Chức', 'Chí Phèo', 'Năm Thọ', 'Tự Lãng'];
     
     const checkCharacters = () => {
         gamePlayers = [];
@@ -56,7 +56,7 @@ function Character(props) {
                 }
             }
         }
-        return ((enabledRoles["Bá Kiến"] || enabledRoles["Lý Cường"] || enabledRoles["Bà Ba"]) && (enabledRoles["Ông Tư Đạm"] || enabledRoles["Thị Nở"] || enabledRoles["Anh Hàng Xóm"] || enabledRoles["Bà Cô của Thị Nở"] || enabledRoles["Binh Chức"] || civilianCount > 0) ? "Valid" : "Missing member");
+        return ((enabledRoles["Bá Kiến"] || enabledRoles["Lý Cường"] || enabledRoles["Bà Ba"]) && (enabledRoles["Lão Hạc"] || enabledRoles["Thị Nở"] || enabledRoles["Ông Giáo"] || enabledRoles["Bà Cô của Thị Nở"] || enabledRoles["Binh Chức"] || civilianCount > 0) ? "Valid" : "Missing member");
     };
 
     // Function to toggle role usage
@@ -141,12 +141,12 @@ function Character(props) {
                 {/* Phe Công Lý */}
                 <h2>Phe Công Lý</h2>
 
-                <div className={`container ${!enabledRoles["Ông Tư Đạm"] && 'disabled'}`}>
-                    <label>Ông Tư Đạm:</label>
-                    {enabledRoles["Ông Tư Đạm"] && <input type="text" id="ong-tu-dam" placeholder="Nhập tên người chơi" />}
-                    {!enabledRoles["Ông Tư Đạm"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
+                <div className={`container ${!enabledRoles["Lão Hạc"] && 'disabled'}`}>
+                    <label>Lão Hạc:</label>
+                    {enabledRoles["Lão Hạc"] && <input type="text" id="lao-hac" placeholder="Nhập tên người chơi" />}
+                    {!enabledRoles["Lão Hạc"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
-                        <button className="role-toggle" onClick={() => toggleRole("Ông Tư Đạm")}>{enabledRoles["Ông Tư Đạm"] ? 'Không sử dụng' : 'Sử dụng'}</button>
+                        <button className="role-toggle" onClick={() => toggleRole("Lão Hạc")}>{enabledRoles["Lão Hạc"] ? 'Không sử dụng' : 'Sử dụng'}</button>
                     </div>
                 </div>
 
@@ -159,12 +159,12 @@ function Character(props) {
                     </div>
                 </div>
 
-                <div className={`container ${!enabledRoles["Anh Hàng Xóm"] && 'disabled'}`}>
-                    <label>Anh Hàng Xóm:</label>
-                    {enabledRoles["Anh Hàng Xóm"] && <input type="text" id="anh-hang-xom" placeholder="Nhập tên người chơi" />}
-                    {!enabledRoles["Anh Hàng Xóm"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
+                <div className={`container ${!enabledRoles["Ông Giáo"] && 'disabled'}`}>
+                    <label>Ông Giáo:</label>
+                    {enabledRoles["Ông Giáo"] && <input type="text" id="ong-giao" placeholder="Nhập tên người chơi" />}
+                    {!enabledRoles["Ông Giáo"] && <div className="disabled-message">Vai trò này đã bị vô hiệu hóa</div>}
                     <div className="button-container">
-                        <button className="role-toggle" onClick={() => toggleRole("Anh Hàng Xóm")}>{enabledRoles["Anh Hàng Xóm"] ? 'Không sử dụng' : 'Sử dụng'}</button>
+                        <button className="role-toggle" onClick={() => toggleRole("Ông Giáo")}>{enabledRoles["Ông Giáo"] ? 'Không sử dụng' : 'Sử dụng'}</button>
                     </div>
                 </div>
 

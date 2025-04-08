@@ -1,6 +1,6 @@
 .card {
     width: 45%;
-    aspect-ratio: 1/2;
+    aspect-ratio: 2/3;
     background-color: var(--brown-menu);
     border-radius: 20px;
     padding: 0;
@@ -13,40 +13,49 @@
 
 .background-card {
     width: 100%;
-    height: 80%;
+    height: calc(2/3*100%);
     border-radius: 20px 20px 0 0;
+    display: flex;
 }
 
 .background-card img {
     width: 100%;
-    height: 100%;
     border-radius: 20px 20px 0 0;
-    object-fit: cover;
+    height: fit-content;
 }
 
 .player-info {
     text-align: center;
     background-color: var(--brown-menu);
     color: var(--brown-text);
-    height: calc(6%);
+    height: calc(1/3*100%);
     display: flex;
-    align-items: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
 }
 
-.player-info h3 {
+.player-info h3, .player-info p {
     margin: 0;
-    font-size: 16px;
-    line-height: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    padding: 0;
+}
+
+.player-info .stat {
     width: 100%;
-    height: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .player-info p {
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.8;
-    width: 100%;
+    font-size: 12px;
+    line-height: 16px;
+    height: 25%;
+}
+
+.player-info h3 {
+    height: 40%;
+    font-size: 24px;
+    line-height: 28px;
 }

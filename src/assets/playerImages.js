@@ -2,9 +2,9 @@
 import baKien from './player/Bá Kiến.png';
 import lyCuong from './player/Lý Cường.png';
 import baBa from './player/Bà Ba.png';
-import ongTuDam from './player/Ông Tư Đạm.png';
+import ongTuDam from './player/Lão Hạc.png';
 import thiNo from './player/Thị Nở.png';
-import anhHangXom from './player/Anh Hàng Xóm.png';
+import anhHangXom from './player/Ông Giáo.png';
 import baCo from './player/Bà Cô của Thị Nở.png';
 import binhChuc from './player/Binh Chức.png';
 import danThuong from './player/Dân thường.png';
@@ -18,9 +18,9 @@ const playerImages = {
   'Bá Kiến': baKien,
   'Lý Cường': lyCuong,
   'Bà Ba': baBa,
-  'Ông Tư Đạm': ongTuDam,
+  'Lão Hạc': ongTuDam,
   'Thị Nở': thiNo,
-  'Anh Hàng Xóm': anhHangXom,
+  'Ông Giáo': anhHangXom,
   'Bà Cô của Thị Nở': baCo,
   'Binh Chức': binhChuc,
   'Dân thường': danThuong,
