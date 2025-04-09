@@ -21,11 +21,10 @@ function GamePlay(props) {
 
     // Function to toggle between day and night phases
     const toggleDayNight = () => {
-        setIsDay(!isDay);
         if (isDay) {
-            // When moving from day to night, increment the day counter
             setDay(day + 1);
         }
+        setIsDay(!isDay);
     };
 
     return (

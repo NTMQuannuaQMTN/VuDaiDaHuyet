@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import "../../styles/home.css"
+import "../../styles/menu.css"
+import Card from './Card';
 
 import getPlayerImage from '../../assets/playerImages';
 
-function PlayerMenu(props) {
-    const cardImage = getPlayerImage(props.player.role);
+import background from "../../assets/background_day.png";
 
+function PlayerMenu(props) {
     return (<div className='menu'>
-        <div style={{
-            width: 100,
-            height: 100,
-            backgroundColor: 'black',
-        }} onClick={() => {props.back();}}>
-            <h3>aga</h3>
+        <div className='background'>
+            <img src={background} alt="Background" />
+        </div>
+        <div className='info'>
+            <Card player={props.player}></Card>
         </div>
     </div>);
 }

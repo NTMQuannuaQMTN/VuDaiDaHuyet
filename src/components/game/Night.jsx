@@ -8,7 +8,7 @@ import background from "../../assets/image.png";
 
 function Night(props) {
     // Display night number as 1 instead of 0
-    const displayNight = props.date + 1;
+    const displayNight = props.date;
     
     setTimeout(() => {
         let title = document.getElementById("title");

@@ -11,29 +11,42 @@ import PlayerMenu from '../player/PlayerMenu';
 function Day(props) {
     const titleRef = useRef(null);
     const gameRef = useRef(null);
+    const filterRef = useRef(null);
+    const playerContRef = useRef(null);
+    const dayRef = useRef(null);
 
     const [filterTeam, setFilterTeam] = useState('all');
     const [players, setPlayers] = useState([]);
     const [playerToSee, setPlayerToSee] = useState(null);
-    
-    // Display day number as 1 instead of 0
-    const displayDay = props.date + 1;
+    const [type, setType] = useState("Chợ");
+    const [typeArr, setTypeArr] = useState({
+        "Chợ": true,
+        "Rượu": true,
+        "Thu hoạch": true,
+    })
 
-    useEffect(() => {
+    // Display day number as 1 instead of 0
+    const displayDay = props.date;
+
+    setTimeout(() => {
         // Animation for title
         const title = titleRef.current;
         const game_title = gameRef.current;
+        const filter = filterRef.current;
+        const playerCont = playerContRef.current;
+        const dayControl = dayRef.current;
 
-        if (title && game_title) {
-            title.style.marginTop = '-50%';
-            title.style.opacity = '0';
+        title.style.marginTop = '-50%';
+        title.style.opacity = '0';
 
-            setTimeout(() => {
-                title.style.display = 'none';
-                game_title.style.opacity = '1';
-            }, 1000);
-        }
-    }, []);
+        setTimeout(() => {
+            title.style.display = 'none';
+            game_title.style.opacity = '1';
+            filter.style.opacity = '1';
+            playerCont.style.opacity = '1';
+            dayControl.style.opacity = '1';
+        }, 1000);
+    }, 1000);
 
     useEffect(() => {
         // Set players from props
@@ -81,7 +94,7 @@ function Day(props) {
             </div>
 
             {/* Filter buttons */}
-            <div className="player-filters">
+            <div className="player-filters" ref={filterRef}>
                 <button
                     className={filterTeam === 'all' ? 'active' : ''}
                     onClick={() => setFilterTeam('all')}
@@ -115,7 +128,7 @@ function Day(props) {
             </div>
 
             {/* Player list container */}
-            <div id='player_cont'>
+            <div id='player_cont' ref={playerContRef}>
                 {filterTeam === 'all' ? (
                     // Display by team groups
                     Object.entries(groupedPlayers).map(([team, teamPlayers]) => (
@@ -155,11 +168,11 @@ function Day(props) {
                 )}
             </div>
 
-            {playerToSee && <PlayerMenu player={playerToSee} back={() => {setPlayerToSee(null)}}></PlayerMenu>}
+            {playerToSee && <div id='menu_cont'><PlayerMenu player={playerToSee} back={() => { setPlayerToSee(null) }}></PlayerMenu></div>}
 
             {/* Game controls */}
-            <div className="day-controls">
-                <button 
+            <div className="day-controls" ref={dayRef}>
+                <button
                     className="next-phase-btn"
                     onClick={props.onEnd}
                 >
