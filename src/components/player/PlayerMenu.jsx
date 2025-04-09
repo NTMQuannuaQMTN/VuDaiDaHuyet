@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "../../styles/menu.css"
 import Card from './Card';
 
+// Này là Menu người chơi, hiển thị stat cùng shop và trade
+
 import getPlayerImage from '../../assets/playerImages';
 
 import background from "../../assets/background_day.png";
