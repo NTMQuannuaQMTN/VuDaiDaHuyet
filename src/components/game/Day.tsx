@@ -14,20 +14,22 @@ function Day(props) {
 
     const [filterTeam, setFilterTeam] = useState('all');
     const [players, setPlayers] = useState([]);
-    // const [playerToSee, setPlayerToSee] = useState(null);
+    const [playerToSee, setPlayerToSee] = useState(null);
+    
+    // Display day number as 1 instead of 0
+    const displayDay = props.date + 1;
 
     useEffect(() => {
         // Animation for title
         const title = titleRef.current;
         const game_title = gameRef.current;
 
-        console.log(title);
-
         if (title && game_title) {
             title.style.marginTop = '-50%';
             title.style.opacity = '0';
 
             setTimeout(() => {
+                title.style.display = 'none';
                 game_title.style.opacity = '1';
             }, 1000);
         }
@@ -71,7 +73,7 @@ function Day(props) {
             </div>
 
             <div id='title' ref={titleRef}>
-                <h2>NGÀY {props.date}</h2>
+                <h2>NGÀY {displayDay}</h2>
             </div>
 
             <div id='game_title' ref={gameRef}>
@@ -121,7 +123,7 @@ function Day(props) {
                             <div key={team} className="team-section">
                                 <h3 className="team-title">{team}</h3>
                                 <div id="player_list">
-                                    {teamPlayers.map((player: any, index) => (
+                                    {teamPlayers.map((player, index) => (
                                         <Card
                                             key={`${player.name}-${index}`}
                                             player={player}
@@ -135,7 +137,7 @@ function Day(props) {
                 ) : (
                     // Display filtered players
                     <div id="player_list">
-                        {getFilteredPlayers().map((player: any, index) => (
+                        {getFilteredPlayers().map((player, index) => (
                             <Card
                                 key={`${player.name}-${index}`}
                                 player={player}
@@ -153,12 +155,15 @@ function Day(props) {
                 )}
             </div>
 
-            {/* {playerToSee != null && <PlayerMenu player={playerToSee} back={() => {setPlayerToSee}}></PlayerMenu>} */}
+            {playerToSee && <PlayerMenu player={playerToSee} back={() => {setPlayerToSee(null)}}></PlayerMenu>}
 
             {/* Game controls */}
             <div className="day-controls">
-                <button className="next-phase-btn">
-                    Bắt đầu đêm {props.date + 1}
+                <button 
+                    className="next-phase-btn"
+                    onClick={props.onEnd}
+                >
+                    Bắt đầu đêm {displayDay}
                 </button>
             </div>
         </div>
