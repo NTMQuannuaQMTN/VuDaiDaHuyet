@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../../styles/menu.css"
-import Card from './Card';
+import CardMenu from './CardMenu';
 
 // Này là Menu người chơi, hiển thị stat cùng shop và trade
 
@@ -14,7 +14,7 @@ function PlayerMenu(props) {
             <img src={background} alt="Background" />
         </div>
         <div className='info'>
-            <Card player={props.player}></Card>
+            <CardMenu player={props.player}></CardMenu>
         </div>
     </div>);
 }
