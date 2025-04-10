@@ -14,6 +14,7 @@ type Role =
     | "Năm Thọ";
 
 export class Player {
+    id: string;
     name: string; // Tên
     role: Role; // Vai trò (Chí Phèo, Bá Kiến...)
     team: string; // Phe (Công lý, ...)
@@ -21,19 +22,32 @@ export class Player {
     frustration: number; // Điểm công lý
     wine: number; // Điểm rượu
     chosen: number; // Trường hợp Chí Phèo bị chọn 2 lần liền bởi Thị Nở
-    items: string[]; // Các thẻ
+    items: {
+        "Rượu Đế": number;
+        "Cháo Hành": number;
+        "Giải Ách": number;
+        "Hồi Hương": number;
+        "Minh Oan": number;
+    }; // Các thẻ
     shutup: boolean; // Câm
     drunk: boolean; // Say
     alive: boolean; // Sống
 
-    constructor(name: string, role: Role) {
+    constructor(id: string, name: string, role: Role) {
+        this.id = id;
         this.name = name;
         this.role = role;
         this.team = this.assignTeam(role);
         this.coins = 3;
         this.frustration = 0;
         this.wine = 0;
-        this.items = [];
+        this.items = {
+            "Rượu Đế": 0,
+            "Cháo Hành": 0,
+            "Giải Ách": 0,
+            "Hồi Hương": 0,
+            "Minh Oan": 0,
+        };
         this.shutup = false;
         this.drunk = false;
         this.alive = true;
@@ -69,11 +83,11 @@ export class Player {
     }
 
     addItem(item: string) {
-        this.items.push(item);
+        this.items[item]++;
     }
 
     removeItem(item: string) {
-        this.items = this.items.splice(this.items.indexOf(item), 1);
+        this.items[item] = Math.max(0, this.items[item] - 1);
     }
 
     increaseFrustration(amount: number) {

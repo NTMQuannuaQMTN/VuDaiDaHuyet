@@ -42,7 +42,7 @@ function Character(props) {
                 if (inp.value == "") {
                     return "Missing name";
                 }
-                gamePlayers.push(new Player(inp.value, "Dân thường"));
+                gamePlayers.push(new Player(`civilian-${i}`, inp.value, "Dân thường"));
             } else {
                 let inp = document.getElementById(roleID[i - civilianCount]);
                 if (enabledRoles[roleIDVN[i - civilianCount]] && inp.value == "") {
@@ -52,7 +52,7 @@ function Character(props) {
                     if (inp.value == "") {
                         return "Missing name";
                     }
-                    gamePlayers.push(new Player(inp.value, roleIDVN[i - civilianCount]));
+                    gamePlayers.push(new Player(roleID[i - civilianCount], inp.value, roleIDVN[i - civilianCount]));
                 }
             }
         }

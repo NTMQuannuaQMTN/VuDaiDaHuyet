@@ -16,7 +16,6 @@ function CardMenu(props) {
             <h2>Tên: {props.player.name}</h2>
             <p>Phe: {props.player.team}</p>
             <div className='stats'>
-                
             </div>
         </div>
     </div>);
