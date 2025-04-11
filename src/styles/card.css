@@ -1,61 +1,131 @@
 .card {
-    width: 45%;
-    aspect-ratio: 2/3;
+    width: 180px;
     background-color: var(--brown-menu);
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 0;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
-.card .background-card {
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card.dead {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.background-card {
     width: 100%;
-    height: calc(2/3*100%);
-    border-radius: 20px 20px 0 0;
-    display: flex;
+    position: relative;
+    border-radius: 15px 15px 0 0;
 }
 
-.card .background-card img {
+.background-card img {
     width: 100%;
-    border-radius: 20px 20px 0 0;
-    height: fit-content;
+    height: 240px;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
 }
 
-.card .player-info {
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 10px;
+    border-radius: 0 0 15px 15px;
     text-align: center;
-    background-color: var(--brown-menu);
-    color: var(--brown-text);
-    height: calc(1/3*100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
 }
 
-.card .player-info h3, .card .player-info p {
+.card-overlay h3 {
     margin: 0;
-    padding: 0;
+    font-size: 16px;
+    color: var(--brown-text);
+    font-weight: bold;
 }
 
-.card .player-info .stat {
-    width: 100%;
-    height: 35%;
+.card-overlay p.role {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: var(--brown-text);
+}
+
+.card-details {
+    background-color: var(--brown-menu);
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid rgba(206, 179, 109, 0.3);
+}
+
+.detail-item {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 8px;
 }
 
-.card .player-info p {
+.detail-item .label {
+    font-weight: bold;
+    color: var(--brown-text);
+    font-size: 14px;
+}
+
+.detail-item .value {
+    color: var(--brown-text);
+    font-size: 14px;
+}
+
+.detail-item.status {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.status-tag {
+    background-color: rgba(206, 179, 109, 0.3);
+    padding: 3px 8px;
+    border-radius: 12px;
     font-size: 12px;
-    line-height: 16px;
-    height: 25%;
+    color: var(--brown-text);
+    font-weight: bold;
 }
 
-.card .player-info h3 {
-    height: 40%;
-    font-size: 24px;
-    line-height: 28px;
+/* Responsive styles */
+@media (max-width: 768px) {
+    .card {
+        width: 150px;
+    }
+    
+    .background-card img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 130px;
+    }
+    
+    .background-card img {
+        height: 170px;
+    }
+    
+    .card-overlay h3 {
+        font-size: 14px;
+    }
+    
+    .card-overlay p.role {
+        font-size: 12px;
+    }
+    
+    .detail-item .label,
+    .detail-item .value {
+        font-size: 12px;
+    }
 }
