@@ -1,0 +1,229 @@
+.night-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    color: var(--brown-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.night-container .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.night-container .background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.3); /* Make background darker for night */
+}
+
+.night-content {
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    margin-top: 50px;
+    border: 2px solid var(--brown-text);
+}
+
+.night-content h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: var(--brown-text);
+    text-shadow: 0 0 10px rgba(206, 179, 109, 0.7);
+}
+
+.night-phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.night-phase h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--brown-text);
+}
+
+.night-phase p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--brown-text);
+}
+
+.night-phase button {
+    background-color: var(--brown-menu);
+    color: var(--brown-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+}
+
+.night-phase button:hover {
+    background-color: var(--brown-text);
+    color: var(--brown-menu);
+}
+
+.night-phase button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.team-members {
+    text-align: left;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.team-members h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--brown-text);
+}
+
+.team-members ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-members li {
+    background-color: rgba(79, 48, 8, 0.6);
+    padding: 8px 15px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.player-selection {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.player-selection h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.player-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.player-option {
+    background-color: rgba(79, 48, 8, 0.5);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.player-option:hover {
+    background-color: rgba(79, 48, 8, 0.8);
+}
+
+.player-option.selected {
+    background-color: var(--brown-text);
+    color: var(--brown-menu);
+}
+
+.notifications {
+    background-color: rgba(79, 48, 8, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.notifications h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.notifications ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notifications li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: rgba(79, 48, 8, 0.3);
+    border-radius: 5px;
+}
+
+.game-status {
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+}
+
+.game-status h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--brown-text);
+}
+
+.player-status-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.player-status {
+    background-color: rgba(79, 48, 8, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    width: calc(33.33% - 10px);
+    font-size: 14px;
+}
+
+.player-status.dead {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.player-status span {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .night-content {
+        width: 95%;
+    }
+    
+    .player-status {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .player-status {
+        width: 100%;
+    }
+}
