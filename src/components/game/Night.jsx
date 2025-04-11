@@ -7,13 +7,27 @@ import { Player } from "../../types/roles";
 import background from "../../assets/image.png";
 import Card from '../player/Card';
 
+import chiPheo from '../../assets/player/Chí Phèo.png';
+import baKien from '../../assets/player/Bá Kiến.png';
+import lyCuong from '../../assets/player/Lý Cường.png';
+import baBa from '../../assets/player/Bà Ba.png';
+import laoHac from '../../assets/player/Lão Hạc.png';
+import thiNo from '../../assets/player/Thị Nở.png';
+import ongGiao from '../../assets/player/Ông Giáo.png';
+import baCoThiNo from '../../assets/player/Bà Cô của Thị Nở.png';
+import binhChuc from '../../assets/player/Binh Chức.png';
+import danThuong from '../../assets/player/Dân thường.png';
+import doiTao from '../../assets/player/Đội Tảo.png';
+import tuLang from '../../assets/player/Tự Lãng.png';
+import namTho from '../../assets/player/Năm Thọ.png';
+
 function Night(props) {
     const { members, setMembers, day, advanceToDay } = props;
     const [currentPhase, setCurrentPhase] = useState('start');
     const [selectedPlayer, setSelectedPlayer] = useState(null);
     const [powerActions, setPowerActions] = useState({});
     const [notifications, setNotifications] = useState([]);
-    
+
     // Danh sách các giai đoạn trong đêm theo thứ tự
     const phases = [
         'start',               // Bắt đầu đêm
@@ -36,11 +50,27 @@ function Night(props) {
         'end'                  // Kết thúc đêm
     ];
 
+    const roleIMG = {
+        "Chí Phèo": chiPheo,
+        "Bá Kiến": baKien,
+        "Lý Cường": lyCuong,
+        "Bà Ba": baBa,
+        "Lão Hạc": laoHac,
+        "Thị Nở": thiNo,
+        "Ông Giáo": ongGiao,
+        "Bà Cô của Thị Nở": baCoThiNo,
+        "Binh Chức": binhChuc,
+        "Dân thường": danThuong,
+        "Đội Tảo": doiTao,
+        "Tự Lãng": tuLang,
+        "Năm Thọ": namTho
+    };
+
     // Function để chuyển sang giai đoạn tiếp theo
     const nextPhase = () => {
         const currentIndex = phases.indexOf(currentPhase);
         const nextIndex = currentIndex + 1;
-        
+
         if (nextIndex < phases.length) {
             setCurrentPhase(phases[nextIndex]);
         } else {
@@ -59,12 +89,12 @@ function Night(props) {
         // Clone members để cập nhật
         let updatedMembers = [...members];
         let newNotifications = [...notifications];
-        
+
         // Tìm index của người chơi được chọn
         const selectedIndex = updatedMembers.findIndex(m => m.name === selectedPlayer.name);
-        
+
         // Xử lý từng loại hành động
-        switch(currentPhase) {
+        switch (currentPhase) {
             case 'powerQuyen':
                 // Phe Quyền Thế đàn áp
                 if (selectedIndex >= 0) {
@@ -72,7 +102,7 @@ function Night(props) {
                     newNotifications.push(`${selectedPlayer.name} bị phe Quyền Thế đàn áp`);
                 }
                 break;
-                
+
             case 'baKien':
                 // Bá Kiến đàn áp thêm
                 if (selectedIndex >= 0) {
@@ -80,12 +110,12 @@ function Night(props) {
                     newNotifications.push(`${selectedPlayer.name} bị Bá Kiến đàn áp thêm`);
                 }
                 break;
-                
+
             case 'lyCuong':
                 // Lý Cường tống tiền
                 if (selectedIndex >= 0 && updatedMembers[selectedIndex].coins > 0) {
                     updatedMembers[selectedIndex].removeCoins(1);
-                    
+
                     // Tìm các thành viên phe Quyền Thế để chia tiền
                     const quyenTheMembers = updatedMembers.filter(m => m.team === "Quyền Thế" && m.alive);
                     if (quyenTheMembers.length > 0) {
@@ -99,32 +129,32 @@ function Night(props) {
                             quyenTheMembers[randomIndex].addCoins(1);
                         }
                     }
-                    
+
                     newNotifications.push(`${selectedPlayer.name} bị Lý Cường tống tiền 1 đồng`);
                 }
                 break;
-                
+
             case 'baBa':
                 // Bà Ba kiểm tra
                 const isChiPheo = selectedPlayer.role === "Chí Phèo";
-                setPowerActions({...powerActions, baBa: {checked: selectedPlayer.name, isChiPheo}});
+                setPowerActions({ ...powerActions, baBa: { checked: selectedPlayer.name, isChiPheo } });
                 break;
-                
+
             case 'laoHac':
                 // Lão Hạc bảo vệ
                 if (selectedIndex >= 0) {
                     // Lưu người được bảo vệ để sau này xử lý
-                    setPowerActions({...powerActions, laoHac: {protected: selectedPlayer.name}});
+                    setPowerActions({ ...powerActions, laoHac: { protected: selectedPlayer.name } });
                     newNotifications.push(`${selectedPlayer.name} được Lão Hạc bảo vệ`);
                 }
                 break;
-                
+
             case 'thiNo':
                 // Thị Nở giúp đỡ
                 if (selectedIndex >= 0 && updatedMembers[selectedIndex].frustration > 0) {
                     updatedMembers[selectedIndex].increaseFrustration(-1);
                     newNotifications.push(`${selectedPlayer.name} được Thị Nở giúp đỡ, giảm 1 điểm uất ức`);
-                    
+
                     // Kiểm tra nếu là Chí Phèo và đã chọn 2 đêm liên tiếp
                     if (selectedPlayer.role === "Chí Phèo") {
                         const lastNight = powerActions.thiNo?.helped;
@@ -135,29 +165,29 @@ function Night(props) {
                         }
                     }
                 }
-                
+
                 // Lưu người được giúp đỡ
-                setPowerActions({...powerActions, thiNo: {helped: selectedPlayer.name}});
+                setPowerActions({ ...powerActions, thiNo: { helped: selectedPlayer.name } });
                 break;
-                
+
             case 'baCo':
                 // Bà Cô kiểm tra phe
                 const isQuyenThe = selectedPlayer.team === "Quyền Thế";
-                setPowerActions({...powerActions, baCo: {checked: selectedPlayer.name, isQuyenThe}});
+                setPowerActions({ ...powerActions, baCo: { checked: selectedPlayer.name, isQuyenThe } });
                 break;
-                
+
             case 'ongGiao':
                 // Ông Giáo so sánh hai người
                 if (!powerActions.ongGiao) {
                     // Lưu người thứ nhất
-                    setPowerActions({...powerActions, ongGiao: {first: selectedPlayer.name}});
+                    setPowerActions({ ...powerActions, ongGiao: { first: selectedPlayer.name } });
                 } else {
                     // Lấy người thứ nhất
                     const firstPlayer = members.find(m => m.name === powerActions.ongGiao.first);
                     // So sánh phe
                     const sameSide = firstPlayer.team === selectedPlayer.team;
                     setPowerActions({
-                        ...powerActions, 
+                        ...powerActions,
                         ongGiao: {
                             ...powerActions.ongGiao,
                             second: selectedPlayer.name,
@@ -166,7 +196,7 @@ function Night(props) {
                     });
                 }
                 break;
-                
+
             case 'chiPheo':
                 // Xử lý khả năng của Chí Phèo dựa vào phe hiện tại
                 const chiPheo = members.find(m => m.role === "Chí Phèo");
@@ -180,13 +210,13 @@ function Night(props) {
                             newNotifications.push(`${selectedPlayer.name} bị Chí Phèo giết chết`);
                             setPowerActions({
                                 ...powerActions,
-                                chiPheo: {success: true, killed: selectedPlayer.name}
+                                chiPheo: { success: true, killed: selectedPlayer.name }
                             });
                         } else {
                             // Giết sai, mất khả năng
                             setPowerActions({
                                 ...powerActions,
-                                chiPheo: {success: false, attempted: selectedPlayer.name}
+                                chiPheo: { success: false, attempted: selectedPlayer.name }
                             });
                         }
                     } else if (chiPheo.team === "Quyền Thế") {
@@ -195,12 +225,12 @@ function Night(props) {
                         newNotifications.push(`${selectedPlayer.name} bị Chí Phèo giết chết`);
                         setPowerActions({
                             ...powerActions,
-                            chiPheo: {killed: selectedPlayer.name}
+                            chiPheo: { killed: selectedPlayer.name }
                         });
                     }
                 }
                 break;
-                
+
             case 'doiTao':
                 // Xử lý khả năng của Đội Tảo
                 if (!powerActions.doiTao?.usedKill) {
@@ -210,7 +240,7 @@ function Night(props) {
                         newNotifications.push(`${selectedPlayer.name} bị Đội Tảo thanh trừng`);
                         setPowerActions({
                             ...powerActions,
-                            doiTao: {...(powerActions.doiTao || {}), usedKill: true}
+                            doiTao: { ...(powerActions.doiTao || {}), usedKill: true }
                         });
                     } else {
                         // Ép buộc
@@ -228,7 +258,7 @@ function Night(props) {
                     }
                 }
                 break;
-                
+
             case 'namTho':
                 // Năm Thọ cướp tiền
                 if (selectedIndex >= 0) {
@@ -236,7 +266,7 @@ function Night(props) {
                         // Cướp nhầm nhà Bá Kiến
                         const namThoIndex = updatedMembers.findIndex(m => m.role === "Năm Thọ");
                         if (namThoIndex >= 0) {
-                            updatedMembers[namThoIndex].kill();
+                            updatedMembers[namThoIndex].increaseFrustration(2);
                             updatedMembers[selectedIndex].removeCoins(updatedMembers[selectedIndex].coins); // Mất hết tiền
                             newNotifications.push(`Năm Thọ cướp nhầm nhà Bá Kiến và bị trục xuất khỏi làng`);
                         }
@@ -244,18 +274,18 @@ function Night(props) {
                         // Cướp 3 đồng
                         const coinsToSteal = Math.min(updatedMembers[selectedIndex].coins, 3);
                         updatedMembers[selectedIndex].removeCoins(coinsToSteal);
-                        
+
                         // Tìm Năm Thọ để cộng tiền
                         const namThoIndex = updatedMembers.findIndex(m => m.role === "Năm Thọ");
                         if (namThoIndex >= 0) {
                             updatedMembers[namThoIndex].addCoins(coinsToSteal);
                         }
-                        
+
                         newNotifications.push(`${selectedPlayer.name} bị Năm Thọ cướp ${coinsToSteal} đồng`);
                     }
                 }
                 break;
-                
+
             case 'tuLang':
                 // Tự Lãng bán rượu
                 if (selectedIndex >= 0) {
@@ -266,33 +296,33 @@ function Night(props) {
                         if (tuLangIndex >= 0) {
                             updatedMembers[tuLangIndex].addCoins(1);
                         }
-                        
+
                         // Tăng điểm rượu cho người chơi
                         updatedMembers[selectedIndex].increaseWine(1);
-                        
+
                         newNotifications.push(`${selectedPlayer.name} mua rượu của Tự Lãng và trả 1 đồng`);
                     } else {
                         newNotifications.push(`${selectedPlayer.name} không có tiền để mua rượu`);
                     }
                 }
                 break;
-                
+
             default:
                 break;
         }
-        
+
         // Cập nhật danh sách người chơi và thông báo
         setMembers(updatedMembers);
         setNotifications(newNotifications);
         setSelectedPlayer(null);
-        
+
         // Chuyển sang giai đoạn tiếp theo
         nextPhase();
     };
 
     // Render UI cho từng giai đoạn
     const renderPhaseContent = () => {
-        switch(currentPhase) {
+        switch (currentPhase) {
             case 'start':
                 return (
                     <div className="night-phase">
@@ -301,7 +331,7 @@ function Night(props) {
                         <button onClick={nextPhase}>Tiếp theo</button>
                     </div>
                 );
-                
+
             case 'powerQuyen':
                 // Hiển thị danh sách phe Quyền Thế và danh sách người chơi để chọn đàn áp
                 const quyenTheMembers = members.filter(m => m.team === "Quyền Thế" && m.alive);
@@ -320,8 +350,8 @@ function Night(props) {
                             <h3>Chọn người để đàn áp:</h3>
                             <div className="player-list">
                                 {members.filter(m => m.alive && m.team !== "Quyền Thế").map(player => (
-                                    <div 
-                                        key={player.name} 
+                                    <div
+                                        key={player.name}
                                         className={`player-option ${selectedPlayer?.name === player.name ? 'selected' : ''}`}
                                         onClick={() => handlePlayerSelect(player)}
                                     >
@@ -333,7 +363,7 @@ function Night(props) {
                         <button onClick={() => applyPower('oppress')} disabled={!selectedPlayer}>Đàn áp</button>
                     </div>
                 );
-                
+
             case 'baKien':
                 // Kiểm tra nếu có Bá Kiến trong trò chơi
                 const baKien = members.find(m => m.role === "Bá Kiến" && m.alive);
@@ -342,15 +372,15 @@ function Night(props) {
                     setTimeout(nextPhase, 0);
                     return <div className="night-phase"><p>Bá Kiến không có trong trò chơi hoặc đã chết.</p></div>;
                 }
-                
+
                 return (
                     <div className="night-phase">
                         <h2>Bá Kiến thức dậy</h2>
                         <p>Bá Kiến có thể chọn thêm một người để đàn áp:</p>
                         <div className="player-list">
                             {members.filter(m => m.alive && m.team !== "Quyền Thế").map(player => (
-                                <div 
-                                    key={player.name} 
+                                <div
+                                    key={player.name}
                                     className={`player-option ${selectedPlayer?.name === player.name ? 'selected' : ''}`}
                                     onClick={() => handlePlayerSelect(player)}
                                 >
@@ -361,10 +391,10 @@ function Night(props) {
                         <button onClick={() => applyPower('oppress')} disabled={!selectedPlayer}>Đàn áp thêm</button>
                     </div>
                 );
-                
+
             // Tiếp tục với các giai đoạn khác tương tự...
             // Tôi sẽ triển khai thêm một số giai đoạn chính làm ví dụ
-                
+
             case 'lyCuong':
                 // Kiểm tra nếu có Lý Cường trong trò chơi
                 const lyCuong = members.find(m => m.role === "Lý Cường" && m.alive);
@@ -372,15 +402,15 @@ function Night(props) {
                     setTimeout(nextPhase, 0);
                     return <div className="night-phase"><p>Lý Cường không có trong trò chơi hoặc đã chết.</p></div>;
                 }
-                
+
                 return (
                     <div className="night-phase">
                         <h2>Lý Cường thức dậy</h2>
                         <p>Lý Cường có thể chọn một người để tống tiền:</p>
                         <div className="player-list">
                             {members.filter(m => m.alive && m.team !== "Quyền Thế").map(player => (
-                                <div 
-                                    key={player.name} 
+                                <div
+                                    key={player.name}
                                     className={`player-option ${selectedPlayer?.name === player.name ? 'selected' : ''}`}
                                     onClick={() => handlePlayerSelect(player)}
                                 >
@@ -391,9 +421,9 @@ function Night(props) {
                         <button onClick={() => applyPower('extort')} disabled={!selectedPlayer}>Tống tiền</button>
                     </div>
                 );
-                
+
             // Hiển thị tương tự cho các vai trò khác
-                
+
             case 'summary':
                 return (
                     <div className="night-phase">
@@ -409,7 +439,7 @@ function Night(props) {
                         <button onClick={nextPhase}>Kết thúc đêm</button>
                     </div>
                 );
-                
+
             case 'end':
                 return (
                     <div className="night-phase">
@@ -418,7 +448,7 @@ function Night(props) {
                         <button onClick={advanceToDay}>Bình minh đến</button>
                     </div>
                 );
-                
+
             default:
                 return (
                     <div className="night-phase">
@@ -435,25 +465,41 @@ function Night(props) {
             <div className="background">
                 <img src={background} alt="Night background" />
             </div>
-            
+
             <div className="night-content">
                 <h1>Đêm {day}</h1>
                 {renderPhaseContent()}
             </div>
-            
+
             {/* Hiển thị thông tin trạng thái game cho Hương Sư */}
             <div className="game-status">
                 <h3>Trạng thái người chơi:</h3>
-                <div className="player-status-list">
-                    {members.map(player => (
-                        <div key={player.name} className={`player-status ${!player.alive ? 'dead' : ''}`}>
-                            <span>{player.name} ({player.role})</span>
-                            <span>Phe: {player.team}</span>
-                            <span>Xu: {player.coins}</span>
-                            <span>Uất ức: {player.frustration}</span>
-                            <span>Rượu: {player.wine}</span>
-                        </div>
-                    ))}
+                <div style={{
+                    height: 180,
+                    overflowY: 'scroll',
+                }}>
+                    <div className="player-status-list">
+                        {members.map(player => (
+                            <div key={player.name} className={`player-status ${!player.alive ? 'dead' : ''}`}>
+                                <img src={roleIMG[player.role]} style={{
+                                    width: '40%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    borderRadius: 10,
+                                }}></img>
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}>
+                                    <span>{player.name} ({player.role})</span>
+                                    <span>Phe: {player.team}</span>
+                                    <span>Xu: {player.coins}</span>
+                                    <span>Uất ức: {player.frustration}</span>
+                                    <span>Rượu: {player.wine}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

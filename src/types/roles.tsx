@@ -29,6 +29,7 @@ export class Player {
         "Hồi Hương": number;
         "Minh Oan": number;
     }; // Các thẻ
+    forced: boolean;
     shutup: boolean; // Câm
     drunk: boolean; // Say
     alive: boolean; // Sống
@@ -48,8 +49,8 @@ export class Player {
             "Hồi Hương": 0,
             "Minh Oan": 0,
         };
+        this.forced = false;
         this.shutup = false;
-        this.drunk = false;
         this.alive = true;
     }
 
@@ -91,7 +92,7 @@ export class Player {
     }
 
     increaseFrustration(amount: number) {
-        this.frustration += amount;
+        this.frustration = Math.min(this.frustration + amount, 2);
     }
 
     increaseWine(amount: number) {
@@ -104,14 +105,6 @@ export class Player {
 
     unmute() {
         this.shutup = false;
-    }
-
-    chosenDrunk() {
-        this.drunk = true;
-    }
-
-    undrunk() {
-        this.drunk = false;
     }
 
     kill() {

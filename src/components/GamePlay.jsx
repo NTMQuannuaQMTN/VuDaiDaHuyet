@@ -79,11 +79,11 @@ function GamePlay() {
     // Chuyển từ Ngày sang Đêm
     const advanceToNight = () => {
         setIsDay(false);
+        setDay(prevDay => prevDay + 1);
     };
 
     // Chuyển từ Đêm sang Ngày
     const advanceToDay = () => {
-        setDay(prevDay => prevDay + 1);
         setIsDay(true);
     };
 

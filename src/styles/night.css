@@ -9,11 +9,11 @@
 }
 
 .night-container .background {
-    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
     z-index: -1;
 }
 
@@ -30,13 +30,12 @@
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
-    margin-top: 50px;
     border: 2px solid var(--brown-text);
 }
 
 .night-content h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0;
     font-size: 36px;
     color: var(--brown-text);
     text-shadow: 0 0 10px rgba(206, 179, 109, 0.7);
@@ -49,9 +48,9 @@
     text-align: center;
 }
 
-.night-phase h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
+.night-phase :where(h2, h3) {
+    font-size: 24px;
+    margin: 10px;
     color: var(--brown-text);
 }
 
@@ -110,7 +109,6 @@
 
 .player-selection {
     width: 100%;
-    margin: 15px 0;
 }
 
 .player-selection h3 {
@@ -172,7 +170,7 @@
 }
 
 .game-status {
-    width: 80%;
+    width: 90%;
     max-width: 800px;
     margin-top: 20px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -198,9 +196,11 @@
     padding: 10px;
     border-radius: 8px;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: calc(33.33% - 10px);
     font-size: 14px;
+    gap: 10px;
 }
 
 .player-status.dead {

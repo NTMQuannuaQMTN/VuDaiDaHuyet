@@ -8,11 +8,11 @@ function MarketEvent({ members, updateMembers, onFinish }) {
 
     // Available action cards with their prices
     const actionCards = [
-        { id: 'minh-oan', name: 'Minh Oan', price: 10, description: 'Nếu bạn bị vote cao nhất trong buổi bình minh, một lần duy nhất bạn được miễn bị xử tử.' },
+        { id: 'minh-oan', name: 'Minh Oan', price: 10, description: 'Giúp bạn tránh bị xử tử nếu bị bỏ phiếu nhiều nhất.' },
         { id: 'ruou-de', name: 'Rượu Đế', price: 3, description: 'Đặt một thẻ Say Rượu lên một người khác.' },
         { id: 'chao-hanh', name: 'Cháo Hành', price: 2, description: 'Loại bỏ một thẻ Say Rượu từ bất kỳ người chơi nào.' },
         { id: 'giai-ach', name: 'Giải Ách', price: 15, description: 'Hóa giải ép buộc của Đội Tảo.' },
-        { id: 'hoi-huong', name: 'Hồi Hương', price: 10, description: 'Khi dùng có thể gọi về một người đã rời bỏ làng do uất ức vào đêm trước tiếp tục tham gia trò chơi.' }
+        { id: 'hoi-huong', name: 'Hồi Hương', price: 10, description: 'Gọi về một người đã rời bỏ làng do uất ức vào đêm trước tiếp tục tham gia trò chơi.' }
     ];
 
     const handlePlayerSelect = (player) => {
@@ -61,7 +61,7 @@ function MarketEvent({ members, updateMembers, onFinish }) {
                     <div className="player-list">
                         {members.filter(m => m.alive).map(player => (
                             <div 
-                                key={player.name}
+                                key={player.id}
                                 className={`player-item ${selectedPlayer?.name === player.name ? 'selected' : ''}`}
                                 onClick={() => handlePlayerSelect(player)}
                             >

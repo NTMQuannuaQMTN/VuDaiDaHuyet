@@ -2,19 +2,42 @@ import React, { useState } from 'react'
 import "../../styles/card.css"
 import { Player } from '../../types/roles';
 
+import chiPheo from '../../assets/player/Chí Phèo.png';
+import baKien from '../../assets/player/Bá Kiến.png';
+import lyCuong from '../../assets/player/Lý Cường.png';
+import baBa from '../../assets/player/Bà Ba.png';
+import laoHac from '../../assets/player/Lão Hạc.png';
+import thiNo from '../../assets/player/Thị Nở.png';
+import ongGiao from '../../assets/player/Ông Giáo.png';
+import baCoThiNo from '../../assets/player/Bà Cô của Thị Nở.png';
+import binhChuc from '../../assets/player/Binh Chức.png';
+import danThuong from '../../assets/player/Dân thường.png';
+import doiTao from '../../assets/player/Đội Tảo.png';
+import tuLang from '../../assets/player/Tự Lãng.png';
+import namTho from '../../assets/player/Năm Thọ.png';
+
 function Card(props) {
     const [showDetails, setShowDetails] = useState(false);
     const { player } = props;
 
-    // Đường dẫn tới hình ảnh vai trò
-    const getCardImage = () => {
-        try {
-            // Nếu đã có hình ảnh cụ thể cho vai trò
-            return require(`../../assets/player/${player.role}.png`);
-        } catch (error) {
-            // Nếu không có, sử dụng hình ảnh mặc định
-            return require(`../../assets/player/default.png`);
-        }
+    const roleIMG = {
+        "Chí Phèo": chiPheo,
+        "Bá Kiến": baKien,
+        "Lý Cường": lyCuong,
+        "Bà Ba": baBa,
+        "Lão Hạc": laoHac,
+        "Thị Nở": thiNo,
+        "Ông Giáo": ongGiao,
+        "Bà Cô của Thị Nở": baCoThiNo,
+        "Binh Chức": binhChuc,
+        "Dân thường": danThuong,
+        "Đội Tảo": doiTao,
+        "Tự Lãng": tuLang,
+        "Năm Thọ": namTho
+    };
+    
+    const getCardImage = (role) => {
+        return roleIMG[role];
     };
 
     // Hiển thị thông tin chi tiết khi click vào thẻ
