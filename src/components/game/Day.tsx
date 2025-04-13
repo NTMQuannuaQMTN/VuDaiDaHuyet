@@ -138,7 +138,7 @@ function Day(props) {
                                 <div id="player_list">
                                     {teamPlayers.map((player, index) => (
                                         <Card
-                                            key={`${player.name}-${index}`}
+                                            key={`${player.id}`}
                                             player={player}
                                             seeMenu={() => { setPlayerToSee(player) }}
                                         />
