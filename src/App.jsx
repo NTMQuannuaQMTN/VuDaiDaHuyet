@@ -7,6 +7,11 @@ import Instruction from './components/HowToPlay'
 import GamePlay from './components/GamePlay'
 
 function App() {
+  window.addEventListener('load', function() {
+  setTimeout(function() {
+    window.scrollTo(0, 1);
+  }, 100);
+})
   const [toggleInstruction, setToggleInstruction] = useState(false);
   const [toggleGame, setToggleGame] = useState(false);
 
